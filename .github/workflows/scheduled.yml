@@ -1,6 +1,7 @@
 name: api_test_pipeline
 
 on:
+ workflow_dispatch:
  schedule:
   - cron: 00 15 * * 1-5
 
