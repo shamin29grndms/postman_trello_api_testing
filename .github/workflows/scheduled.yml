@@ -2,7 +2,7 @@ name: api_test_pipeline
 
 on:
  schedule:
-  - cron: 30 20 * * 1-5
+  - cron: 00 15 * * 1-5
 
   # Allows you to run this workflow manually from the Actions tab
 
@@ -15,15 +15,21 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - name: Pull postman collections
+        uses: actions/checkout@v3
+        with:
+          ref: main
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Install newman
+        run: |
+         npm install -g newman
+         npm install -g newman-reporter-htmlextra
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Run postman collections
+        run: newman run 'Trello_Daniil_DZ.postman_collection_no_auth.json -e Trello_UAT.postman_environment.json'
+      
+        
+          
+        
