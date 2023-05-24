@@ -29,7 +29,7 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run postman collections
-        run: newman run 'Trello_Daniil_DZ.postman_collection_no_auth.json -e Trello_UAT.postman_environment.json'
+        run: 'newman run Trello_Daniil_DZ.postman_collection_no_auth.json -e Trello_UAT.postman_environment.json'
       
         
           
